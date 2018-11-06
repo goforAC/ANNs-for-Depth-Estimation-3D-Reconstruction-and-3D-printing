@@ -1,0 +1,636 @@
+#VRML V2.0 utf8
+
+PROTO MinionCreator[
+    # Main parameter
+    field   SFVec3f one_eye     0 0 0       # default: all eyes hidden 
+    field   SFVec3f two_eyes    0 0 0       # show eyes with 0 0 0.45
+    
+    field   SFFloat mHeight     1         # 0 < mHeight <= 1
+    field   SFVec3f head        0 0.5 0    # 0  mHeight/2 0
+    field   SFVec3f butt        0 -0.5 0   # 0 -mHeight/2 0
+    field   SFFloat mShape      0.5         # stays fixed
+    
+    field   SFFloat arm_len     0.5         # float between 0 and 1
+    field   SFVec3f left_hand   0 -0.25 0
+    field   SFVec3f right_hand  0 0.25 0
+    
+    field   SFFloat leg_len     0.4   # float between 0 and 1 
+    field   SFVec3f ankles      0 -0.2 0
+    field   SFVec3f feet        0 -0.2 0.1
+    field   SFVec3f toes        0 -0.2 0.2
+]
+
+{
+
+    # A cylinder
+    Transform
+    {
+        translation 0 0 0
+        children
+        [
+            Shape 
+                {
+                appearance Appearance 
+                {
+                    material Material 
+                    {
+                        diffuseColor 1 1 0
+                    }
+                }
+                geometry Cylinder 
+                {
+                    height IS mHeight 
+                    radius IS mShape
+                }
+            }
+
+            # A top circle
+            Transform{
+                translation IS head
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material Material
+                            {
+                                diffuseColor 1 1 0
+                            }
+                        }
+                        geometry Sphere
+                        {
+                            radius IS mShape
+                        }
+                    }
+                    # A goggle band
+                    Transform
+                    {
+                        translation 0 0 0
+                        children
+                        [
+                            Shape 
+                            {
+                                appearance Appearance 
+                                {
+                                    material Material 
+                                    {
+                                    #    diffuseColor 0 0 0
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "leather.jpg"
+                                    }
+                                }
+                                geometry Cylinder 
+                                {
+                                    height 0.1 
+                                    radius 0.55
+                                }
+                            }
+                        ]
+                    }
+                    # A one eye goggle
+                    Transform
+                    {
+                        rotation 1 0 0 1.575
+                        translation IS one_eye
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material Material
+                                    {
+
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "metal.jpg"
+                                    }
+                                }
+                                geometry Cylinder
+                                {
+                                    radius 0.25
+                                    height 0.2
+                                }
+                            }
+                        ]
+                    }
+                    Transform
+                    {
+                        rotation 1 0 0 1.575
+                        translation IS one_eye
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material Material
+                                    {
+                                    
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "blue_eye2.jpg"
+                                    }
+                                }
+                                geometry Cylinder
+                                {
+                                    radius 0.2
+                                    height 0.2001
+                                }
+                            }
+                        ]
+                    }
+
+                    # A two eyes goggle
+                    Transform
+                    {
+                        rotation 1 0 0 1.575
+                        translation IS two_eyes
+                        children
+                        [
+                            Transform
+                            {
+                                translation 0.15 0 0
+                                children
+                                [
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "metal.jpg"
+                                            }
+                                        }
+                                        geometry Cylinder
+                                        {
+                                            radius 0.2
+                                            height 0.2
+                                        }
+                                    },
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "green_eye2.jpg"
+                                            }
+                                        }
+                                        geometry Cylinder
+                                        {
+                                            radius 0.15
+                                            height 0.2001
+                                        }
+                                    }
+                                ]
+                            },
+                            Transform
+                            {
+                                translation -0.15 0 0
+                                children
+                                [
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "metal.jpg"
+                                            }
+                                        }
+                                        geometry Cylinder
+                                        {
+                                            radius 0.2
+                                            height 0.2
+                                        }
+                                    }
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "brown_eye2.jpg"
+                                            }
+                                        }
+                                        geometry Cylinder
+                                        {
+                                            radius 0.15
+                                            height 0.2001
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            # A butt circle
+            Transform{
+                translation IS butt
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material Material
+                            {
+                            #    diffuseColor 1 1 0
+                            }
+                            texture ImageTexture
+                            {
+                                url "jeans.jpg"
+                            }
+                        }
+                        geometry Sphere
+                        {
+                            radius 0.51
+                        }
+                    }
+                    # A left leg
+                    Transform{
+                        translation 0.2 -0.4 0
+                        children
+                        [
+                            Shape{
+                                appearance Appearance
+                                {
+                                    material Material
+                                    {
+                                    #    diffuseColor 0 0 0
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "jeans.jpg"
+                                    }
+                                }
+                                geometry Cylinder
+                                {
+                                    radius 0.1
+                                    height IS leg_len
+                                }
+                            }
+                            # A left ankle
+                            Transform{
+                                translation IS ankles
+                                children
+                                [
+                                    Shape{
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            #    diffuseColor 0 0 0
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "leather.jpg"
+                                            }
+                                        }
+                                        geometry Sphere
+                                        {
+                                            radius 0.1
+                                        }
+                                    }
+                                ]
+                            }
+
+                            # A left foot
+                            Transform
+                            {
+                                rotation 1 0 0 1.57
+                                translation IS feet
+                                children
+                                [
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            #    diffuseColor 0 0 0
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "leather.jpg"
+                                            }
+                                        }
+                                        geometry Cylinder
+                                        {
+                                        radius 0.1
+                                        height 0.2
+                                        }
+                                    }
+                                ]
+                            }
+
+                            #  left toes
+                            Transform
+                            {
+                                translation IS toes
+                                children
+                                [
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            #    diffuseColor 0 0 0
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "leather.jpg"
+                                            }
+                                        }
+                                        geometry Sphere
+                                        {
+                                        radius 0.1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+
+                    # A right leg
+                    Transform{
+                        translation -0.2 -0.4 0
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material Material
+                                    {
+                                    #    diffuseColor 1 1 0
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "jeans.jpg"
+                                    }
+                                }
+                                geometry Cylinder
+                                {
+                                    radius 0.1
+                                    height IS leg_len
+                                }
+                            }
+                            # A right ankle
+                            Transform{
+                                translation IS ankles
+                                children
+                                [
+                                    Shape{
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            #    diffuseColor 0 0 0
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "leather.jpg"
+                                            }
+                                        }
+                                        geometry Sphere
+                                        {
+                                            radius 0.1
+                                        }
+                                    }
+                                ]
+                            }
+
+                            # A right foot
+                            Transform{
+                                rotation 1 0 0 1.57
+                                translation IS feet
+                                children
+                                [
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            #    diffuseColor 0 0 0
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "leather.jpg"
+                                            }
+                                        }
+                                        geometry Cylinder
+                                        {
+                                        radius 0.1
+                                        height 0.2
+                                        }
+                                    }
+                                ]
+                            }
+
+                            # right toes
+                            Transform
+                            {
+                                translation IS toes
+                                children
+                                [
+                                    Shape
+                                    {
+                                        appearance Appearance
+                                        {
+                                            material Material
+                                            {
+                                            #    diffuseColor 0 0 0
+                                            }
+                                            texture ImageTexture
+                                            {
+                                                url "leather.jpg"
+                                            }
+                                        }
+                                        geometry Sphere
+                                        {
+                                        radius 0.1
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            # A left shoulder
+            #Transform{
+            #    translation 0.52 0 0.02
+            #    children
+            #    [
+            #        Shape
+            #        {
+            #            appearance Appearance
+            #            {
+            #                material Material
+            #                {
+            #                    diffuseColor 1 1 0
+            #                }
+            #            }
+            #            geometry Sphere
+            #            {
+            #                radius 0.08
+            #            }
+            #        }
+            #    ]    
+            #}
+
+            # A left arm
+            Transform{
+                rotation 0 0 -1 -1.575
+                translation 0.6 0 0
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material Material
+                            {
+                                diffuseColor 1 1 0
+                            }
+                        }
+                        geometry Cylinder
+                        {
+                            radius 0.08
+                            height IS arm_len
+                        }
+                    }
+                    # A left hand
+                    Transform{
+                        translation IS left_hand
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material Material
+                                    {
+                                    #    diffuseColor 0 0 0
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "leather.jpg"
+                                    }
+                                }
+                                geometry Sphere
+                                {
+                                    radius 0.09
+                                }
+                            }
+                        ]    
+                    }
+                ]    
+            }
+
+
+
+            # A right shoulder
+            #Transform{
+            #    translation -0.52 0 0
+            #    children
+            #    [
+            #        Shape
+            #        {
+            #           appearance Appearance
+            #            {
+            #                material Material
+            #                {
+            #                    diffuseColor 1 1 0
+            #                }
+            #            }
+            #            geometry Sphere
+            #            {
+            #                radius 0.08
+            #            }
+            #        }
+            #    ]    
+            #}
+
+            # A right arm
+            Transform{
+                rotation 0 0 1 1.575
+                translation -0.6 0 0
+                children
+                [
+                    Shape
+                    {
+                        appearance Appearance
+                        {
+                            material Material
+                            {
+                                diffuseColor 1 1 0
+                            }
+                        }
+                        geometry Cylinder
+                        {
+                            radius 0.08
+                            height IS arm_len
+                        }
+                    }
+                    # A right hand
+                    Transform{
+                        translation IS right_hand
+                        children
+                        [
+                            Shape
+                            {
+                                appearance Appearance
+                                {
+                                    material Material
+                                    {
+                                    #    diffuseColor 0 0 0
+                                    }
+                                    texture ImageTexture
+                                    {
+                                        url "leather.jpg"
+                                    }
+                                }
+                                geometry Sphere
+                                {
+                                    radius 0.09
+                                }
+                            }
+                        ]    
+                    }
+
+                ]    
+            }
+        ]    
+    }
+}
+
+# MinionCreator{}
+ MinionCreator{one_eye 0 0 0.45 mHeight 3.000000e-01 butt 0 -1.500000e-01 0 head 0 1.500000e-01 0 arm_len 3.000000e-01 left_hand 0 -1.500000e-01 0 right_hand 0 1.500000e-01 0 leg_len 2.000000e-01 ankles 0 -1.000000e-01 0 feet 0 -1.000000e-01 0.1 toes 0 -1.000000e-01 0.2} 
