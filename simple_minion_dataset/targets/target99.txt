@@ -1,0 +1,4 @@
+ "Eyes" : 1 
+ "Height" : 8.000000e-01 
+ "Arm_Length" : 8.000000e-01 
+ "Leg_Length" : 4.000000e-01

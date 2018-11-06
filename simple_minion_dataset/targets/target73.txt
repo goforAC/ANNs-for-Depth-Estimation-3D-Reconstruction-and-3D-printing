@@ -1,0 +1,4 @@
+Eyes:1
+Height:0.6
+Arm_Length:0.9
+Leg_Length:0.3
